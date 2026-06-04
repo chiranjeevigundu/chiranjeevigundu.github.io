@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Chiranjeevi Gundu - Forward Deployed AI Engineer Portfolio">
+    <title>Chiranjeevi Gundu | Forward Deployed AI Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-grid"></div>
+    <div class="blob-cont">
+        <div class="yellow blob"></div>
+        <div class="red blob"></div>
+        <div class="green blob"></div>
+    </div>
+
+    <nav>
+        <div class="nav-container">
+            <div class="logo">&lt;CG /&gt;</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Deployments</a></li>
+                <li><a href="#projects">Architecture</a></li>
+                <li><a href="#skills">Tech Stack</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header id="hero">
+        <div class="container hero-content">
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <span class="btn red"></span>
+                    <span class="btn yellow"></span>
+                    <span class="btn green"></span>
+                    <span class="title">chiranjeevi@fde: ~</span>
+                </div>
+                <div class="terminal-body" id="typewriter">
+                    <!-- JS will inject text here -->
+                </div>
+            </div>
+            
+            <h1 class="glitch" data-text="Chiranjeevi Gundu">Chiranjeevi Gundu</h1>
+            <h2 class="subtitle">Forward Deployed AI Engineer</h2>
+            <p class="description">
+                Bridging the gap between bleeding-edge AI research and robust production deployments. 
+                I architect and deploy autonomous multi-agent systems and scalable RAG pipelines for enterprise clients.
+            </p>
+            <div class="cta-buttons">
+                <a href="#experience" class="btn-primary">View Deployments</a>
+                <a href="https://github.com/chiranjeevigundu" target="_blank" class="btn-secondary"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://linkedin.com/in/chiranjeevigundu" target="_blank" class="btn-secondary"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="experience" class="section">
+        <div class="container">
+            <h2 class="section-title">Deployment Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-panel">
+                        <h3>AI Engineer (Deployment & Customer Solutions)</h3>
+                        <h4>Techsara Solutions Inc. | Aug 2025 – Jun 2026</h4>
+                        <ul>
+                            <li><strong>Deployed</strong> robust RAG pipelines and multi-agent workflows using Llama 3 and Mistral for enterprise knowledge chatbots.</li>
+                            <li><strong>Architected</strong> autonomous agent swarms (LangGraph, CrewAI) served securely via vLLM for high-throughput inference.</li>
+                            <li><strong>Integrated</strong> Python-based orchestration with Angular frontend client dashboards.</li>
+                            <li><strong>Containerized</strong> microservices using Docker and Azure for seamless integration and high availability.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-panel">
+                        <h3>Digital Technology Assistant</h3>
+                        <h4>Sodexo | Aug 2024 – May 2025</h4>
+                        <ul>
+                            <li><strong>Automated</strong> system health checks with Python and PowerShell, saving 10+ manual hours/week.</li>
+                            <li><strong>Analyzed</strong> operational logs to enable proactive maintenance, reducing downtime by 15%.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-panel">
+                        <h3>Machine Learning Engineer</h3>
+                        <h4>Tata Consultancy Services (TCS) | Aug 2021 – Jul 2023</h4>
+                        <ul>
+                            <li><strong>Integrated</strong> BERT-based text classification APIs directly into corporate IT systems to automate ticket routing.</li>
+                            <li><strong>Optimized</strong> data retrieval using PostgreSQL, improving real-time ML workflow latency.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">System Architecture & Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card glass-panel">
+                    <div class="project-icon"><i class="fas fa-network-wired"></i></div>
+                    <h3>Synapse Storage System</h3>
+                    <p class="project-subtitle">Autonomous Multi-Agent NAS Orchestrator</p>
+                    <p>Architected an agent-driven NAS orchestrator on an Intel N100 homelab. Engineered an asynchronous swarm using CrewAI and LangGraph, powered by edge-deployed Gemma 4 models. Eliminated cloud dependency for edge use cases.</p>
+                    <div class="tech-tags">
+                        <span>CrewAI</span><span>LangGraph</span><span>Ollama</span><span>Edge AI</span>
+                    </div>
+                </div>
+                
+                <div class="project-card glass-panel">
+                    <div class="project-icon"><i class="fas fa-server"></i></div>
+                    <h3>Enterprise Knowledge Platform</h3>
+                    <p class="project-subtitle">GenAI / RAG</p>
+                    <p>Designed a complex RAG pipeline with LangChain and AutoGen. Integrated Unstructured.io and vector databases (Qdrant) to improve query accuracy by 35%. Containerized with FastAPI and Docker, deployed on AWS ECS Fargate.</p>
+                    <div class="tech-tags">
+                        <span>Docker</span><span>AWS ECS</span><span>AutoGen</span><span>Qdrant</span>
+                    </div>
+                </div>
+
+                <div class="project-card glass-panel">
+                    <div class="project-icon"><i class="fas fa-microchip"></i></div>
+                    <h3>LLaMA Fine-Tuning</h3>
+                    <p class="project-subtitle">Specialized Q&A Models</p>
+                    <p>Fine-tuned foundational models (LLaMA 3, Gemma 4) using LoRA/PEFT with DeepSpeed. Reduced memory consumption by 60% while enforcing strict AI safety protocols using Guardrails AI and Rebuff.</p>
+                    <div class="tech-tags">
+                        <span>LoRA</span><span>DeepSpeed</span><span>Guardrails AI</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title">Technical Arsenal</h2>
+            <div class="skills-container">
+                <div class="skill-category glass-panel">
+                    <h3><i class="fas fa-cloud-upload-alt"></i> Architecture & DevOps</h3>
+                    <div class="skill-list">
+                        <span>Docker</span><span>Kubernetes</span><span>AWS</span><span>Azure</span><span>CI/CD</span><span>vLLM</span>
+                    </div>
+                </div>
+                <div class="skill-category glass-panel">
+                    <h3><i class="fas fa-robot"></i> GenAI & Agents</h3>
+                    <div class="skill-list">
+                        <span>LangGraph</span><span>CrewAI</span><span>AutoGen</span><span>Llama-3</span><span>OpenAI</span><span>Advanced RAG</span>
+                    </div>
+                </div>
+                <div class="skill-category glass-panel">
+                    <h3><i class="fas fa-database"></i> Data & Backend</h3>
+                    <div class="skill-list">
+                        <span>Python</span><span>FastAPI</span><span>PostgreSQL</span><span>Qdrant</span><span>Milvus</span><span>Apache Spark</span>
+                    </div>
+                </div>
+                <div class="skill-category glass-panel">
+                    <h3><i class="fas fa-shield-alt"></i> AI Safety</h3>
+                    <div class="skill-list">
+                        <span>Guardrails AI</span><span>Rebuff</span><span>SHAP</span><span>LIME</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container text-center">
+            <p>&copy; 2026 Chiranjeevi Gundu. Forward Deployed AI Engineer.</p>
+            <p><small>Master of Science in Computer Science (AI), Saint Louis University</small></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
