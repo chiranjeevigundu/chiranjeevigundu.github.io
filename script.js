@@ -54,8 +54,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Glitch effect on scroll (Optional: subtle parallax for glass panels)
-const glassPanels = document.querySelectorAll('.glass-panel');
+// Scroll effects: subtle parallax for blobs and scroll spy for active navigation links
+const sections = document.querySelectorAll('header, section');
+const navLinks = document.querySelectorAll('.nav-links a');
+
 window.addEventListener('scroll', () => {
     const scrollPos = window.scrollY;
     
@@ -63,5 +65,22 @@ window.addEventListener('scroll', () => {
     const blobs = document.querySelectorAll('.blob');
     blobs.forEach((blob, index) => {
         blob.style.transform = `translateY(${scrollPos * (0.05 * (index + 1))}px)`;
+    });
+
+    // Scroll spy: identify the active section
+    let currentSectionId = 'hero';
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - 150; // offset for sticky nav bar
+        const sectionHeight = section.offsetHeight;
+        if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+            currentSectionId = section.getAttribute('id');
+        }
+    });
+
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentSectionId}`) {
+            link.classList.add('active');
+        }
     });
 });
