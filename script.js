@@ -1,9 +1,9 @@
 // Typewriter effect for terminal window
 const typeWriterElement = document.getElementById('typewriter');
 const texts = [
-    "> Init FDE_Protocol...",
-    "> Loading AI deployment architectures...",
-    "> Orchestrating Multi-Agent Swarms...",
+    "> Init AI_Engineer_Protocol...",
+    "> Loading GenAI production architectures...",
+    "> Orchestrating Multi-Agent Systems...",
     "> Target: Enterprise Production Environment...",
     "> Status: System Online."
 ];
@@ -60,7 +60,7 @@ const navLinks = document.querySelectorAll('.nav-links a');
 
 window.addEventListener('scroll', () => {
     const scrollPos = window.scrollY;
-    
+
     // Very subtle movement for blobs
     const blobs = document.querySelectorAll('.blob');
     blobs.forEach((blob, index) => {
