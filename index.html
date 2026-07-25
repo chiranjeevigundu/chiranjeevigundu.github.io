@@ -1,168 +1,342 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Chiranjeevi Gundu - AI Engineer Portfolio">
-    <title>Chiranjeevi Gundu | AI Engineer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <!-- FontAwesome for icons -->
+    <meta name="description" content="Chiranjeevi Gundu — AI Engineer &amp; Systems Architect. Multi-agent orchestration, RAG pipelines, and production GenAI systems on AWS and Azure.">
+    <meta name="author" content="Chiranjeevi Gundu">
+    <meta property="og:title" content="Chiranjeevi Gundu | AI Engineer &amp; Systems Architect">
+    <meta property="og:description" content="4 years taking AI from prototype to production — multi-agent orchestration, RAG pipelines, model-routing layers, shipped with backend rigor.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://chiranjeevigundu.github.io">
+    <title>Chiranjeevi Gundu | AI Engineer &amp; Systems Architect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="background-grid"></div>
-    <div class="blob-cont">
-        <div class="yellow blob"></div>
-        <div class="red blob"></div>
-        <div class="green blob"></div>
+    <div class="background-grid" aria-hidden="true"></div>
+    <div class="blob-cont" aria-hidden="true">
+        <div class="blob blob-a"></div>
+        <div class="blob blob-b"></div>
+        <div class="blob blob-c"></div>
     </div>
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
-    <nav>
+    <nav id="navbar">
         <div class="nav-container">
-            <div class="logo">&lt;CG /&gt;</div>
-            <ul class="nav-links">
+            <a href="#hero" class="logo">&lt;CG /&gt;</a>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#hero" class="active">About</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#projects">Projects</a></li>
-                <li><a href="#skills">Tech Stack</a></li>
+                <li><a href="#skills">Stack</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
+            <div class="nav-actions">
+                <button id="themeToggle" class="icon-btn" aria-label="Toggle color theme" title="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="menuToggle" class="icon-btn menu-btn" aria-label="Toggle navigation" aria-expanded="false">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
         </div>
     </nav>
 
+    <!-- ============ HERO ============ -->
     <header id="hero">
         <div class="container hero-content">
             <div class="terminal-window">
                 <div class="terminal-header">
-                    <span class="btn red"></span>
-                    <span class="btn yellow"></span>
-                    <span class="btn green"></span>
-                    <span class="title">chiranjeevi@ai: ~</span>
+                    <span class="dot dot-red"></span>
+                    <span class="dot dot-yellow"></span>
+                    <span class="dot dot-green"></span>
+                    <span class="term-title">chiranjeevi@ai-eng: ~</span>
                 </div>
-                <div class="terminal-body" id="typewriter">
-                    <!-- JS will inject text here -->
+                <div class="terminal-body">
+                    <span class="prompt">$</span> <span id="typewriter"></span><span class="cursor" aria-hidden="true"></span>
                 </div>
             </div>
 
+            <p class="eyebrow"><i class="fas fa-location-dot"></i> Tempe, AZ &nbsp;·&nbsp; Open to AI Engineering roles</p>
             <h1 class="glitch" data-text="Chiranjeevi Gundu">Chiranjeevi Gundu</h1>
-            <h2 class="subtitle">AI Engineer</h2>
+            <h2 class="subtitle">AI Engineer &amp; Systems Architect</h2>
             <p class="description">
-                AI Engineer and systems architect with an M.S. in Computer Science (AI track) and 4 years of experience taking AI from prototype to production. I design end-to-end GenAI systems — multi-agent orchestration, RAG pipelines, and model-routing layers — and ship them with backend rigor: typed APIs, automated tests, CI/CD, and secure cloud and on-prem deployment on AWS and Azure.
+                M.S. in Computer Science (AI track) and 4 years taking AI from prototype to production. I design
+                end-to-end GenAI systems — multi-agent orchestration, RAG pipelines, and model-routing layers — and
+                ship them with backend rigor: typed APIs, sound data modeling, automated tests, CI/CD, and secure
+                cloud and on-prem deployment on AWS and Azure.
             </p>
+
+            <div class="metrics">
+                <div class="metric"><span class="metric-num" data-count="40" data-suffix="%">0%</span><span class="metric-label">faster ticket triage</span></div>
+                <div class="metric"><span class="metric-num" data-count="60" data-suffix="%">0%</span><span class="metric-label">faster client queries</span></div>
+                <div class="metric"><span class="metric-num" data-count="35" data-suffix="%">0%</span><span class="metric-label">retrieval accuracy lift</span></div>
+                <div class="metric"><span class="metric-num" data-count="10" data-suffix="+">0</span><span class="metric-label">hrs/week returned</span></div>
+            </div>
+
             <div class="cta-buttons">
                 <a href="#experience" class="btn-primary">View Experience</a>
-                <a href="https://github.com/chiranjeevigundu" target="_blank" class="btn-secondary"><i class="fab fa-github"></i> GitHub</a>
-                <a href="https://linkedin.com/in/chiranjeevigundu" target="_blank" class="btn-secondary"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="Chiranjeevi_Gundu_AI_Engineer.pdf" class="btn-secondary" download><i class="fas fa-file-arrow-down"></i> Resume</a>
+                <a href="https://github.com/chiranjeevigundu" target="_blank" rel="noopener" class="btn-secondary"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://linkedin.com/in/chiranjeevigundu" target="_blank" rel="noopener" class="btn-secondary"><i class="fab fa-linkedin"></i> LinkedIn</a>
             </div>
         </div>
     </header>
 
+    <!-- ============ EXPERIENCE ============ -->
     <section id="experience" class="section">
         <div class="container">
-            <h2 class="section-title">Professional Experience</h2>
+            <h2 class="section-title" data-num="01">Experience</h2>
+            <p class="section-sub">Four years of shipping systems teams actually adopt and trust in production.</p>
+
             <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content glass-panel">
-                        <h3>AI Engineer</h3>
-                        <h4>Axitem Software Solution Inc. | Aug 2025 – Present</h4>
-                        <ul>
-                            <li><strong>Deliver</strong> AI chatbots and document Q&amp;A tools (Python, LangChain, OpenAI APIs) that answer client questions from internal documents in seconds, relied on daily by client support and operations teams.</li>
-                            <li><strong>Ship</strong> RAG pipelines (Pinecone vector search, PostgreSQL) that ground every chatbot answer in real company documents with source citations, cutting hallucinations and earning formal client sign-off.</li>
-                            <li><strong>Automate</strong> multi-step business tasks with LangChain and LangGraph agent workflows that plan steps, call tools, and verify their own output, removing hours of repetitive manual work.</li>
-                            <li><strong>Unlock</strong> privacy-sensitive enterprise deals by running open-source models (Llama 3, Mistral) fully in-house on client-owned infrastructure, keeping all client data off external APIs.</li>
+                <article class="timeline-item reveal">
+                    <div class="timeline-marker"></div>
+                    <div class="card">
+                        <div class="card-head">
+                            <div>
+                                <h3>AI Engineer</h3>
+                                <p class="org">Axitem Software Solution Inc. <span class="loc">· Remote, USA</span></p>
+                            </div>
+                            <span class="period current">Aug 2025 – Present</span>
+                        </div>
+                        <ul class="bullets">
+                            <li>Deliver AI chatbots and document Q&amp;A tools (Python, LangChain, OpenAI APIs) that answer client questions from internal documents in seconds, now relied on daily by client support and operations teams.</li>
+                            <li>Ship RAG pipelines (Pinecone vector search, PostgreSQL) that ground every answer in real company documents with source citations — cutting hallucinations and earning formal client project sign-off across engagements.</li>
+                            <li>Raised retrieval accuracy <strong>~35%</strong> by scoring a fixed evaluation set before and after each change and separating retrieval failures from generation failures; the dominant fix was structure-aware parsing that stopped chunking from splitting tables mid-row.</li>
+                            <li>Unlocked privacy-sensitive enterprise deals by running open-source models (Llama 3, Mistral) fully in-house on client-owned infrastructure, keeping all client data off external APIs.</li>
                         </ul>
+                        <div class="more" hidden>
+                            <ul class="bullets">
+                                <li>Automated multi-step business tasks — data lookup, report drafting — with LangChain and LangGraph agent workflows that plan steps, call tools, and verify their own output.</li>
+                                <li>Cut hallucinations with a three-layer trust design: answers grounded strictly in retrieved chunks, every claim linked to its source passage, and an explicit refusal path when retrieval confidence is low.</li>
+                                <li>Standardized delivery on a Dockerized FastAPI backend template with health endpoints and env-var configuration, making a move between AWS and Azure a configuration change rather than a rewrite.</li>
+                                <li>Turned every reported wrong answer into a permanent regression case by building evaluation sets from real user questions, then tuning chunking, embeddings, and retrieval against measured hit-rate rather than intuition.</li>
+                                <li>Clear client security review as an early gate by deploying inside the client's own cloud account and walking their IT team through every data flow before writing significant code.</li>
+                                <li>Scoped an open-ended "ChatGPT but for us" request into a delivered phase 1 by running a working session on the top 20 real employee questions and demoing a prototype.</li>
+                                <li>Keep indexes fresh with scheduled incremental re-ingestion that detects changed documents and upserts only those, versioning chunks so superseded content is removed.</li>
+                            </ul>
+                        </div>
+                        <button class="more-toggle" aria-expanded="false">Show more <i class="fas fa-chevron-down"></i></button>
+                        <div class="tags">
+                            <span>LangChain</span><span>LangGraph</span><span>Pinecone</span><span>FastAPI</span><span>PostgreSQL</span><span>Llama 3</span><span>Docker</span>
+                        </div>
                     </div>
-                </div>
+                </article>
 
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content glass-panel">
-                        <h3>Systems Automation Engineer</h3>
-                        <h4>Sodexo | Aug 2024 – May 2025</h4>
-                        <ul>
-                            <li><strong>Saved</strong> 10+ hours of manual work every week by automating system health checks and daily status reporting with scheduled Python and PowerShell scripts across the campus kiosk and POS hardware fleet.</li>
-                            <li><strong>Reduced</strong> campus kiosk downtime 15% by analyzing peak-usage logs and shifting the team from reactive break-fix repairs to proactive, scheduled maintenance ahead of high-traffic windows.</li>
+                <article class="timeline-item reveal">
+                    <div class="timeline-marker"></div>
+                    <div class="card">
+                        <div class="card-head">
+                            <div>
+                                <h3>Systems Automation Engineer</h3>
+                                <p class="org">Sodexo <span class="loc">· Saint Louis, MO</span></p>
+                            </div>
+                            <span class="period">Aug 2024 – May 2025</span>
+                        </div>
+                        <ul class="bullets">
+                            <li>Saved <strong>10+ hours</strong> of manual work every week by automating routine system health checks and daily status reporting with scheduled Python and PowerShell scripts across the entire campus kiosk and point-of-sale hardware fleet.</li>
+                            <li>Reduced campus kiosk downtime <strong>15%</strong> by analyzing peak-usage logs and shifting the team from reactive break-fix repairs to proactive maintenance ahead of predicted high-traffic windows.</li>
+                            <li>Documented and handed off every automation script so the team kept running them after the role ended — turning a temporary position into durable operational tooling.</li>
                         </ul>
+                        <div class="tags">
+                            <span>Python</span><span>PowerShell</span><span>Log Analysis</span><span>Automation</span>
+                        </div>
                     </div>
-                </div>
+                </article>
 
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content glass-panel">
-                        <h3>Backend Software Engineer</h3>
-                        <h4>Tata Consultancy Services (TCS) | Aug 2021 – Jul 2023</h4>
-                        <ul>
-                            <li><strong>Cut</strong> manual ticket-sorting time 40% for a Fortune 500 client by integrating an ML text-classification model into their IT support system through Python (FastAPI) REST APIs.</li>
-                            <li><strong>Improved</strong> mission-critical client workflow performance 60% by profiling and optimizing PostgreSQL queries, adding targeted indexes, and rewriting inefficient backend data pipelines.</li>
-                            <li><strong>Cut</strong> deployment failures 30% and held code coverage above 85% by building thorough PyTest unit-test suites and enforcing CI/CD best practices on every release.</li>
+                <article class="timeline-item reveal">
+                    <div class="timeline-marker"></div>
+                    <div class="card">
+                        <div class="card-head">
+                            <div>
+                                <h3>Backend Software Engineer</h3>
+                                <p class="org">Tata Consultancy Services (TCS) <span class="loc">· Chennai, India</span></p>
+                            </div>
+                            <span class="period">Aug 2021 – Jul 2023</span>
+                        </div>
+                        <ul class="bullets">
+                            <li>Cut manual ticket-sorting time <strong>40%</strong> for a Fortune 500 client by integrating an ML text-classification model into their IT support system through Python (FastAPI) REST APIs.</li>
+                            <li>Improved mission-critical client workflow performance <strong>60%</strong> by profiling and optimizing PostgreSQL queries, adding targeted indexes, and rewriting inefficient backend data pipelines.</li>
+                            <li>Cut deployment failures <strong>30%</strong> and held code coverage above <strong>85%</strong> with thorough PyTest suites and enforced CI/CD practices on every release.</li>
+                            <li>Made the ML routing system safe to switch on with a confidence-threshold fallback — low-confidence predictions returned to the manual queue rather than mis-routing — logging every prediction against the human decision to measure live accuracy.</li>
                         </ul>
+                        <div class="more" hidden>
+                            <ul class="bullets">
+                                <li>Diagnosed performance bottlenecks with EXPLAIN/ANALYZE and pg_stat_statements rather than guesswork, then rewrote N+1 access patterns into joins and batch fetches, validated against production-scale data volumes before rollout.</li>
+                                <li>Translated business-language requirements from Fortune 500 retail and banking stakeholders into scoped technical proposals a non-engineer could approve — establishing the client-facing habit that now anchors my AI delivery work.</li>
+                            </ul>
+                        </div>
+                        <button class="more-toggle" aria-expanded="false">Show more <i class="fas fa-chevron-down"></i></button>
+                        <div class="tags">
+                            <span>FastAPI</span><span>PostgreSQL</span><span>Scikit-learn</span><span>PyTest</span><span>CI/CD</span>
+                        </div>
                     </div>
-                </div>
+                </article>
             </div>
         </div>
     </section>
 
-    <section id="projects" class="section">
+    <!-- ============ PROJECTS ============ -->
+    <section id="projects" class="section alt">
         <div class="container">
-            <h2 class="section-title">Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card glass-panel">
-                    <div class="project-icon"><i class="fas fa-robot"></i></div>
-                    <h3>Aadyon Assist — Open-Source AI Life-Ops Platform</h3>
-                    <p class="project-subtitle"><a href="https://github.com/chiranjeevigundu/aadyon-assist" target="_blank">github.com/chiranjeevigundu/aadyon-assist</a> (MIT)</p>
-                    <ul style="font-size: 0.9rem; padding-left: 1.2rem; text-align: left;">
-                        <li>Architected and open-sourced a self-hosted, multi-user AI platform end to end — data model, agent layer, ingestion, REST API, and iPhone app — as seven Docker Compose microservices on FastAPI and Postgres 16 with pgvector.</li>
-                        <li>Designed a multi-agent organization where a CEO agent decomposes goals and delegates to four specialist agent teams, with explicit step limits and a full audit trail.</li>
-                        <li>Engineered a human-in-the-loop safety model: read-only analysis runs autonomously, while any real-world side effect (money, email) becomes a proposal the user must approve.</li>
-                        <li>Built a tiered model-routing layer over LiteLLM (OpenRouter, GPT-4o-mini, local Llama 3 via Ollama) driven entirely by a database table.</li>
-                        <li>Designed multi-tenant isolation with Postgres Row-Level Security, JWT authentication, and Fernet-encrypted credentials.</li>
-                        <li>Shipped solo with 149 automated tests, GitHub Actions CI, and ingestion pipelines that turn emails, PDFs, and bank transactions into reviewable to-dos via LLM extraction and OpenAI Vision.</li>
-                    </ul>
-                    <div class="tech-tags">
-                        <span>FastAPI</span><span>Postgres + pgvector</span><span>LiteLLM</span><span>Docker Compose</span><span>Ollama</span>
+            <h2 class="section-title" data-num="02">Projects</h2>
+            <p class="section-sub">Systems built end to end — data model, agent layer, API, and client.</p>
+
+            <article class="project-card reveal">
+                <div class="project-head">
+                    <div>
+                        <h3>Aadyon Assist</h3>
+                        <p class="org">Open-Source AI Life-Ops Platform <span class="loc">· MIT licensed</span></p>
                     </div>
+                    <a href="https://github.com/chiranjeevigundu/aadyon-assist" target="_blank" rel="noopener" class="repo-link">
+                        <i class="fab fa-github"></i> View Repo
+                    </a>
                 </div>
-            </div>
+
+                <div class="project-stats">
+                    <div><span class="stat-num">7</span><span class="stat-label">Docker microservices</span></div>
+                    <div><span class="stat-num">149</span><span class="stat-label">automated tests</span></div>
+                    <div><span class="stat-num">5</span><span class="stat-label">agent teams</span></div>
+                    <div><span class="stat-num">4</span><span class="stat-label">life-dimension scores</span></div>
+                </div>
+
+                <ul class="bullets">
+                    <li>Architected and open-sourced a self-hosted, multi-user AI platform end to end — data model, agent layer, ingestion, REST API, and iPhone app — running as seven Docker Compose microservices on FastAPI and Postgres 16 with pgvector.</li>
+                    <li>Designed a multi-agent organization in which a CEO agent decomposes a goal and delegates to four specialist agent teams, bounding every run with explicit step limits and recording each step in an audit trail.</li>
+                    <li>Engineered a human-in-the-loop safety model: read-only analysis runs autonomously, while any action with a real-world side effect (money, email) becomes a proposal the user must approve — no irreversible action ever executes on its own.</li>
+                    <li>Built a tiered model-routing layer over LiteLLM (OpenRouter, GPT-4o-mini, local Llama 3 via Ollama) driven entirely by a database table, so cost, capability, and privacy each map to the right model with zero application code changes.</li>
+                </ul>
+                <div class="more" hidden>
+                    <ul class="bullets">
+                        <li>Designed multi-tenant isolation using Postgres Row-Level Security enforced at the database, with JWT authentication and Fernet-encrypted credentials, so a single bug or injection can never leak one user's data to another.</li>
+                        <li>Built ingestion pipelines that turn emails, PDFs, and bank transactions into reviewable to-dos via LLM extraction and OpenAI Vision, shipped solo with 149 automated tests, GitHub Actions CI, and plain-SQL migrations.</li>
+                        <li>Modeled a "Digital Me" schema rolling profile, application, and milestone data into four transparent 0–100 life-dimension scores that each return their sub-components — every number auditable rather than opaque.</li>
+                        <li>Built read-only sync connectors over IMAP and Microsoft Graph with per-account cursors for incremental sync, routing all extracted items through an approval queue so extraction errors annoy the user instead of corrupting real records.</li>
+                        <li>Concentrated 149 PyTest cases where determinism lives — schema and CRUD, auth and RLS boundaries, scoring math, API contracts — testing around LLM calls rather than asserting on generations.</li>
+                        <li>Deployed self-hosted and reachable only over a Tailscale network, with a daily briefing pushed to iPhone via self-hosted ntfy, making privacy structural rather than a policy promise.</li>
+                        <li>Reduced the operational burden of self-hosting with Docker Compose orchestration, a <code>just</code> task runner, and an automated backup service — keeping the schema portable to a multi-tenant SaaS deployment.</li>
+                    </ul>
+                </div>
+                <button class="more-toggle" aria-expanded="false">Show more <i class="fas fa-chevron-down"></i></button>
+                <div class="tags">
+                    <span>FastAPI</span><span>Postgres 16</span><span>pgvector</span><span>LiteLLM</span><span>Ollama</span><span>React Native</span><span>Docker Compose</span><span>Row-Level Security</span><span>GitHub Actions</span>
+                </div>
+            </article>
         </div>
     </section>
 
+    <!-- ============ SKILLS ============ -->
     <section id="skills" class="section">
         <div class="container">
-            <h2 class="section-title">Technical Skills</h2>
-            <div class="skills-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
-                <div class="skill-category glass-panel">
-                    <h3>Languages &amp; ML</h3>
-                    <div class="skill-list">
-                        <span>Python</span><span>SQL</span><span>JavaScript</span><span>TypeScript</span><span>Bash</span><span>PyTorch</span><span>Scikit-learn</span><span>Text Classification</span>
+            <h2 class="section-title" data-num="03">Tech Stack</h2>
+            <p class="section-sub">What I reach for, grouped by where it lives in the system.</p>
+
+            <div class="skills-grid">
+                <div class="skill-card reveal">
+                    <h3><i class="fas fa-code"></i> Languages &amp; ML</h3>
+                    <div class="chips">
+                        <span>Python</span><span>SQL</span><span>JavaScript</span><span>TypeScript</span><span>Bash</span><span>PowerShell</span><span>PyTorch</span><span>Scikit-learn</span><span>pandas</span><span>NumPy</span><span>Text Classification</span>
                     </div>
                 </div>
-                <div class="skill-category glass-panel">
-                    <h3>AI / LLM</h3>
-                    <div class="skill-list">
-                        <span>OpenAI API</span><span>LangChain</span><span>LangGraph</span><span>CrewAI</span><span>Hugging Face</span><span>RAG</span><span>Agents</span><span>Prompt Engineering</span><span>Fine-Tuning (LoRA, QLoRA)</span><span>Ollama</span><span>LiteLLM</span><span>Guardrails AI</span><span>Embeddings</span><span>Semantic Search</span><span>Agentic IDEs</span>
+
+                <div class="skill-card reveal">
+                    <h3><i class="fas fa-brain"></i> AI / LLM</h3>
+                    <div class="chips">
+                        <span>OpenAI API</span><span>Anthropic Claude</span><span>LangChain</span><span>LangGraph</span><span>CrewAI</span><span>LlamaIndex</span><span>Hugging Face</span><span>RAG</span><span>Multi-Agent Orchestration</span><span>Tool-Calling</span><span>Prompt Engineering</span><span>Context Optimization</span><span>Fine-Tuning (LoRA, QLoRA)</span><span>Embeddings</span><span>Semantic Search</span><span>Chunking &amp; Retrieval Tuning</span><span>LLM Evaluation</span><span>Guardrails AI</span><span>LiteLLM</span><span>Ollama</span><span>Llama 3</span><span>Mistral</span><span>OpenAI Vision</span><span>Claude Code</span><span>GitHub Copilot</span><span>Cursor</span>
                     </div>
                 </div>
-                <div class="skill-category glass-panel">
-                    <h3>Backend &amp; Data</h3>
-                    <div class="skill-list">
-                        <span>FastAPI</span><span>REST APIs</span><span>Node.js</span><span>PostgreSQL</span><span>Redis</span><span>Pinecone</span><span>pgvector</span><span>Microservices</span><span>React</span>
+
+                <div class="skill-card reveal">
+                    <h3><i class="fas fa-database"></i> Backend &amp; Data</h3>
+                    <div class="chips">
+                        <span>FastAPI</span><span>Pydantic</span><span>REST APIs</span><span>Node.js</span><span>React</span><span>React Native</span><span>Microservices</span><span>SOA</span><span>PostgreSQL 16</span><span>pgvector</span><span>Pinecone</span><span>Redis</span><span>Row-Level Security</span><span>JWT Auth</span><span>Fernet Encryption</span><span>SQL Profiling</span><span>Indexing &amp; Query Optimization</span><span>ETL Pipelines</span><span>IMAP</span><span>Microsoft Graph</span>
                     </div>
                 </div>
-                <div class="skill-category glass-panel">
-                    <h3>Cloud &amp; DevOps</h3>
-                    <div class="skill-list">
-                        <span>AWS (EC2, S3, Lambda, ECS)</span><span>Azure</span><span>Docker</span><span>GitHub Actions</span><span>CI/CD</span><span>Git</span><span>PyTest</span><span>Agile/Scrum</span>
+
+                <div class="skill-card reveal">
+                    <h3><i class="fas fa-cloud"></i> Cloud &amp; DevOps</h3>
+                    <div class="chips">
+                        <span>AWS (EC2, S3, Lambda, ECS)</span><span>Azure</span><span>Docker</span><span>Docker Compose</span><span>GitHub Actions</span><span>CI/CD</span><span>Git</span><span>PyTest</span><span>yoyo Migrations</span><span>Monitoring &amp; Logging</span><span>Audit Trails</span><span>Tailscale</span><span>Agile/Scrum</span><span>Technical Documentation</span>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ EDUCATION ============ -->
+    <section id="education" class="section alt">
+        <div class="container">
+            <h2 class="section-title" data-num="04">Education</h2>
+
+            <div class="edu-grid">
+                <div class="card reveal">
+                    <div class="card-head">
+                        <div>
+                            <h3>M.S. Computer Science <span class="track">— Artificial Intelligence Track</span></h3>
+                            <p class="org">Saint Louis University <span class="loc">· St. Louis, MO</span></p>
+                        </div>
+                        <span class="period">Aug 2023 – May 2025</span>
+                    </div>
+                </div>
+                <div class="card reveal">
+                    <div class="card-head">
+                        <div>
+                            <h3>B.Tech <span class="track">— Electronics &amp; Communication Engineering</span></h3>
+                            <p class="org">Jawaharlal Nehru Technological University <span class="loc">· India</span></p>
+                        </div>
+                        <span class="period">Jul 2017 – Aug 2021</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title" data-num="05">Contact</h2>
+            <p class="section-sub">Building something with agents, retrieval, or a backend that needs to hold up? Let's talk.</p>
+
+            <div class="contact-grid">
+                <a class="contact-card reveal" href="mailto:chiranjeevigundu1@gmail.com">
+                    <i class="fas fa-envelope"></i>
+                    <span class="c-label">Email</span>
+                    <span class="c-value">chiranjeevigundu1@gmail.com</span>
+                </a>
+                <a class="contact-card reveal" href="tel:+14158167939">
+                    <i class="fas fa-phone"></i>
+                    <span class="c-label">Phone</span>
+                    <span class="c-value">+1 (415) 816-7939</span>
+                </a>
+                <a class="contact-card reveal" href="https://linkedin.com/in/chiranjeevigundu" target="_blank" rel="noopener">
+                    <i class="fab fa-linkedin"></i>
+                    <span class="c-label">LinkedIn</span>
+                    <span class="c-value">in/chiranjeevigundu</span>
+                </a>
+                <a class="contact-card reveal" href="https://github.com/chiranjeevigundu" target="_blank" rel="noopener">
+                    <i class="fab fa-github"></i>
+                    <span class="c-label">GitHub</span>
+                    <span class="c-value">@chiranjeevigundu</span>
+                </a>
+            </div>
+
+            <div class="contact-cta">
+                <a href="Chiranjeevi_Gundu_AI_Engineer.pdf" class="btn-primary" download><i class="fas fa-file-arrow-down"></i> Download Resume</a>
             </div>
         </div>
     </section>
 
     <footer>
-        <div class="container text-center">
-            <p>&copy; 2026 Chiranjeevi Gundu. AI Engineer.</p>
-            <p><small>Master of Science in Computer Science (AI), Saint Louis University</small></p>
+        <div class="container footer-inner">
+            <span class="mono">&lt;CG /&gt;</span>
+            <p>© <span id="year"></span> Chiranjeevi Gundu · Tempe, AZ</p>
+            <a href="#hero" class="to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
         </div>
     </footer>
 
