@@ -25,23 +25,6 @@
     --mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
 }
 
-[data-theme="light"] {
-    --bg: #f6f7fb;
-    --bg-elev: rgba(255, 255, 255, 0.82);
-    --bg-alt: rgba(15, 23, 42, 0.022);
-    --text: #10151f;
-    --text-dim: #4b5563;
-    --text-faint: #7c8798;
-    --accent: #0069d9;
-    --accent-2: #6d28d9;
-    --accent-3: #db2777;
-    --border: rgba(15, 23, 42, 0.10);
-    --border-strong: rgba(15, 23, 42, 0.18);
-    --chip-bg: rgba(15, 23, 42, 0.04);
-    --grid-line: rgba(15, 23, 42, 0.038);
-    --shadow: 0 14px 40px rgba(15, 23, 42, 0.10);
-    --blob-opacity: 0.16;
-}
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -248,7 +231,6 @@ h1.glitch {
     background: var(--accent); color: #0a0a0f;
     border: 1px solid var(--accent);
 }
-[data-theme="light"] .btn-primary { color: #fff; }
 .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 26px -8px var(--accent); }
 
 .btn-secondary {

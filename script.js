@@ -4,29 +4,6 @@
 (function () {
     'use strict';
 
-    /* ---------- Theme toggle ---------- */
-    const root = document.documentElement;
-    const themeToggle = document.getElementById('themeToggle');
-    const themeIcon = themeToggle ? themeToggle.querySelector('i') : null;
-
-    function applyTheme(theme) {
-        root.setAttribute('data-theme', theme);
-        if (themeIcon) {
-            themeIcon.className = theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
-        }
-    }
-
-    // Always default to the dark neon theme; the toggle lets users switch to light.
-    let currentTheme = 'dark';
-    applyTheme(currentTheme);
-
-    if (themeToggle) {
-        themeToggle.addEventListener('click', function () {
-            currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            applyTheme(currentTheme);
-        });
-    }
-
     /* ---------- Mobile menu ---------- */
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.getElementById('navLinks');
