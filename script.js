@@ -16,10 +16,8 @@
         }
     }
 
+    // Always default to the dark neon theme; the toggle lets users switch to light.
     let currentTheme = 'dark';
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-        currentTheme = 'light';
-    }
     applyTheme(currentTheme);
 
     if (themeToggle) {
