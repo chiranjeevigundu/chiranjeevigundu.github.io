@@ -31,7 +31,7 @@
 
     const KB = [
         { k: ['hi', 'hello', 'hey', 'yo', 'greetings', 'howdy', 'hiya', 'namaste', 'good morning', 'good evening'],
-          r: "Hey there 👋 I'm a single neuron on loan from Chiranjeevi's brain. Ask me about his experience, the Aadyon Assist project, his tech stack, how he builds RAG / agents, or how to reach him." },
+          r: "Oh hi 👋 One humble neuron cell from Chiranjeevi's brain here — I don't get out much. My little memory holds his experience, the Aadyon Assist project, his tech stack, how he builds RAG / agents, and how to reach him. What'll it be?" },
 
         { k: ['who are you', 'are you real', 'are you ai', 'are you a bot', 'chatgpt', 'real ai', 'robot', 'what are you', 'are you human', 'llm'],
           r: "Ha — I'm not a big fancy LLM, just a tiny scripted neuron wired up from Chiranjeevi's portfolio, matching your question to what he's published here. For a real conversation, email him at <a href='mailto:" + MAIL + "'>" + MAIL + "</a> 🙂" },
@@ -166,7 +166,7 @@
         neuron.classList.add('docked');
         if (!greeted) {
             greeted = true;
-            botSay("Hi! I'm a neuron from Chiranjeevi's brain 🧠⚡ Ask me anything about his work — or tap a topic below.", 250);
+            botSay("Hey! 🧠⚡ I'm a single neuron cell from Chiranjeevi's brain — the other ~86 billion had plans. My memory's tiny but it's 100% him: experience, projects, tech stack, how to reach him. Poke a topic below or fire a question.", 250);
             renderSuggest();
         }
         setTimeout(function () { input.focus(); }, 250);
