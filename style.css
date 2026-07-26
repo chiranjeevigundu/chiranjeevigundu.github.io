@@ -4,20 +4,20 @@
    ========================================================= */
 
 :root {
-    --bg: #0a0a0f;
-    --bg-elev: rgba(20, 20, 30, 0.6);
-    --bg-alt: rgba(255, 255, 255, 0.015);
-    --text: #e2e8f0;
-    --text-dim: #94a3b8;
-    --text-faint: #6b7688;
-    --accent: #00f0ff;
-    --accent-2: #7000ff;
-    --accent-3: #ff0055;
-    --border: rgba(255, 255, 255, 0.08);
-    --border-strong: rgba(255, 255, 255, 0.16);
-    --chip-bg: rgba(255, 255, 255, 0.04);
-    --grid-line: rgba(255, 255, 255, 0.03);
-    --shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+    --bg: #0d0b07;
+    --bg-elev: rgba(32, 26, 14, 0.6);
+    --bg-alt: rgba(255, 240, 210, 0.02);
+    --text: #f0e6d2;
+    --text-dim: #b8a88a;
+    --text-faint: #8a7d63;
+    --accent: #ffb000;
+    --accent-2: #ff7a1a;
+    --accent-3: #e63946;
+    --border: rgba(255, 220, 160, 0.10);
+    --border-strong: rgba(255, 220, 160, 0.20);
+    --chip-bg: rgba(255, 220, 160, 0.05);
+    --grid-line: rgba(255, 220, 160, 0.035);
+    --shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
     --blob-opacity: 0.30;
     --radius: 14px;
     --maxw: 1080px;
@@ -164,12 +164,12 @@ nav.scrolled {
 }
 .terminal-body {
     padding: 16px 14px; font-family: var(--mono); font-size: .82rem;
-    color: #0f0; min-height: 52px;
+    color: #00ff66; min-height: 52px;
 }
-.prompt { color: #0f0; margin-right: 6px; }
+.prompt { color: #00ff66; margin-right: 6px; }
 .cursor {
     display: inline-block; width: 8px; height: 14px;
-    background: #0f0; vertical-align: -2px; margin-left: 2px;
+    background: #00ff66; vertical-align: -2px; margin-left: 2px;
     animation: blink 1.05s steps(2) infinite;
 }
 @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
@@ -228,7 +228,7 @@ h1.glitch {
     transition: all .22s ease; cursor: pointer;
 }
 .btn-primary {
-    background: var(--accent); color: #0a0a0f;
+    background: var(--accent); color: #0d0b07;
     border: 1px solid var(--accent);
 }
 .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 26px -8px var(--accent); }
@@ -268,7 +268,7 @@ h1.glitch {
     position: absolute; left: -30px; top: 26px;
     width: 12px; height: 12px; border-radius: 50%;
     background: var(--bg); border: 2px solid var(--accent);
-    box-shadow: 0 0 0 4px rgba(0, 240, 255, .10);
+    box-shadow: 0 0 0 4px rgba(255, 176, 0, .12);
 }
 
 /* ---------- Cards ---------- */
