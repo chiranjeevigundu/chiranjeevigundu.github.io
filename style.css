@@ -154,7 +154,9 @@ nav.scrolled {
     overflow: hidden;
     box-shadow: var(--shadow);
     margin-bottom: 34px;
+    width: 100%;
     max-width: 560px;
+    box-sizing: border-box;
     backdrop-filter: blur(10px);
 }
 .terminal-header {
@@ -162,16 +164,19 @@ nav.scrolled {
     padding: 9px 13px;
     background: var(--bg-alt);
     border-bottom: 1px solid var(--border);
+    min-width: 0;
 }
-.dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex: none; }
 .dot-red { background: #ff5f56; } .dot-yellow { background: #ffbd2e; } .dot-green { background: #27c93f; }
 .term-title {
     font-family: var(--mono); font-size: .72rem; color: var(--text-faint);
     margin-left: 10px;
+    min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
 }
 .terminal-body {
     padding: 16px 14px; font-family: var(--mono); font-size: .82rem;
     color: #00ff66; min-height: 52px;
+    overflow-wrap: anywhere; word-break: break-word;
 }
 .prompt { color: #00ff66; margin-right: 6px; }
 .cursor {
