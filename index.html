@@ -345,6 +345,54 @@
         </div>
     </footer>
 
+    <!-- ============ ROAMING NEURON ASSISTANT ============ -->
+    <div id="neuron" class="neuron" role="button" tabindex="0" aria-label="Chat with Chiranjeevi's neuron assistant" title="Ask me about Chiranjeevi">
+        <svg class="neuron-svg" viewBox="0 0 100 100" aria-hidden="true">
+            <g class="dendrites" fill="none" stroke="url(#nGrad)" stroke-width="2.2" stroke-linecap="round">
+                <path d="M50 50 L50 14 M50 22 L58 12 M50 24 L42 13"/>
+                <path d="M50 50 L82 32 M74 30 L86 28 M76 36 L88 40"/>
+                <path d="M50 50 L80 74 M78 66 L90 70 M74 78 L82 86"/>
+                <path d="M50 50 L44 88 M40 80 L34 90 M48 82 L54 92"/>
+                <path d="M50 50 L18 70 M22 62 L10 62 M20 76 L12 84"/>
+                <path d="M50 50 L16 34 M22 40 L10 42 M22 30 L12 24"/>
+            </g>
+            <g class="terminals" fill="url(#nGrad)">
+                <circle cx="50" cy="13" r="2.4"/><circle cx="85" cy="28" r="2.4"/>
+                <circle cx="90" cy="70" r="2.4"/><circle cx="33" cy="90" r="2.4"/>
+                <circle cx="10" cy="62" r="2.4"/><circle cx="11" cy="24" r="2.4"/>
+            </g>
+            <circle class="soma" cx="50" cy="50" r="15" fill="url(#nSoma)"/>
+            <circle class="nucleus" cx="50" cy="50" r="6"/>
+            <defs>
+                <radialGradient id="nSoma" cx="50%" cy="40%" r="65%">
+                    <stop offset="0%" stop-color="#eaf1ff"/>
+                    <stop offset="55%" stop-color="#8ab4f8"/>
+                    <stop offset="100%" stop-color="#6d4bff"/>
+                </radialGradient>
+                <linearGradient id="nGrad" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#8ab4f8"/>
+                    <stop offset="100%" stop-color="#c79bff"/>
+                </linearGradient>
+            </defs>
+        </svg>
+        <span class="neuron-greet" id="neuronGreet">Hi — I'm a neuron from Chiranjeevi's brain. Ask me anything 👋</span>
+    </div>
+
+    <div id="neuronChat" class="neuron-chat" role="dialog" aria-label="Chat with Chiranjeevi's neuron" aria-hidden="true">
+        <div class="nc-head">
+            <span class="nc-title"><span class="nc-pulse"></span> Chiranjeevi's Neuron</span>
+            <button class="nc-close" id="neuronClose" type="button" aria-label="Close chat">&times;</button>
+        </div>
+        <div class="nc-log" id="neuronLog" aria-live="polite"></div>
+        <div class="nc-suggest" id="neuronSuggest"></div>
+        <form class="nc-input" id="neuronForm">
+            <input id="neuronInput" type="text" autocomplete="off" placeholder="Ask about experience, projects, stack…" aria-label="Type your question"/>
+            <button type="submit" aria-label="Send message"><i class="fas fa-paper-plane"></i></button>
+        </form>
+        <p class="nc-foot">A tiny scripted neuron — answers from this portfolio, not a live AI.</p>
+    </div>
+
     <script src="script.js"></script>
+    <script src="neuron.js"></script>
 </body>
 </html>

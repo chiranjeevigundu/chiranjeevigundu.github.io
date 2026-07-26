@@ -517,7 +517,131 @@ footer { border-top: 1px solid var(--border); padding: 28px 0; }
 }
 
 @media print {
-    nav, .blob-cont, .background-grid, .scroll-progress, .more-toggle, .to-top { display: none !important; }
+    nav, .blob-cont, .background-grid, .scroll-progress, .more-toggle, .to-top,
+    .particle-field, .neuron, .neuron-chat { display: none !important; }
     body { background: #fff; color: #000; }
     .more[hidden] { display: block !important; }
+}
+
+/* ============ Roaming neuron assistant ============ */
+.neuron {
+    position: fixed; top: 0; left: 0;
+    width: 62px; height: 62px;
+    z-index: 130; cursor: pointer;
+    will-change: transform;
+    -webkit-tap-highlight-color: transparent;
+}
+.neuron:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 6px; border-radius: 50%; }
+.neuron-svg {
+    width: 100%; height: 100%; display: block;
+    filter: drop-shadow(0 0 9px rgba(138, 180, 248, .75));
+    animation: neuronPulse 2.6s ease-in-out infinite;
+    transition: transform .25s ease;
+}
+.neuron:hover .neuron-svg { transform: scale(1.12); filter: drop-shadow(0 0 14px rgba(160, 140, 255, .95)); }
+.neuron .nucleus { fill: #fff; animation: neuronCore 1.6s ease-in-out infinite; }
+.neuron .dendrites { animation: neuronFlow 3.2s ease-in-out infinite; }
+@keyframes neuronPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+@keyframes neuronCore  { 0%, 100% { opacity: .65; } 50% { opacity: 1; } }
+@keyframes neuronFlow  { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
+.neuron.docked .neuron-svg { animation: none; }
+
+.neuron-greet {
+    position: absolute; right: 74px; top: 50%; transform: translateY(-50%) translateX(8px);
+    width: max-content; max-width: 220px;
+    padding: 9px 13px; border-radius: 12px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 12px 30px rgba(0,0,0,.5);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    font-size: .78rem; line-height: 1.4; color: var(--text);
+    opacity: 0; pointer-events: none;
+    transition: opacity .3s ease, transform .3s ease;
+}
+.neuron-greet.show { opacity: 1; transform: translateY(-50%) translateX(0); }
+
+/* Chat panel */
+.neuron-chat {
+    position: fixed; bottom: 22px; right: 22px; z-index: 131;
+    display: flex; flex-direction: column;
+    width: 350px; max-width: calc(100vw - 28px);
+    height: 470px; max-height: calc(100vh - 120px);
+    border-radius: 18px; overflow: hidden;
+    background: linear-gradient(160deg, rgba(20,24,40,.92), rgba(8,10,18,.94));
+    border: 1px solid var(--border-strong);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 30px 70px rgba(0,0,0,.6);
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    opacity: 0; transform: translateY(16px) scale(.98);
+    pointer-events: none; transition: opacity .28s ease, transform .28s ease;
+}
+.neuron-chat.open { opacity: 1; transform: none; pointer-events: auto; }
+
+.nc-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 14px; border-bottom: 1px solid var(--border);
+    background: linear-gradient(160deg, rgba(255,255,255,.06), rgba(255,255,255,.01));
+}
+.nc-title { display: flex; align-items: center; gap: 9px; font-weight: 700; font-size: .92rem; color: var(--text); }
+.nc-pulse { width: 9px; height: 9px; border-radius: 50%; background: #8ab4f8;
+    box-shadow: 0 0 10px 2px rgba(138,180,248,.8); animation: neuronCore 1.6s ease-in-out infinite; }
+.nc-close { background: none; border: none; color: var(--text-dim); font-size: 1.35rem; line-height: 1;
+    cursor: pointer; padding: 0 4px; transition: color .2s ease; }
+.nc-close:hover { color: var(--text); }
+
+.nc-log { flex: 1; overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.nc-msg {
+    max-width: 86%; padding: 9px 12px; border-radius: 13px;
+    font-size: .84rem; line-height: 1.5; word-wrap: break-word; overflow-wrap: anywhere;
+}
+.nc-msg.bot {
+    align-self: flex-start; color: var(--text);
+    background: linear-gradient(160deg, rgba(255,255,255,.10), rgba(255,255,255,.03));
+    border: 1px solid var(--border); border-bottom-left-radius: 4px;
+}
+.nc-msg.user {
+    align-self: flex-end; color: #0a0c14; font-weight: 500;
+    background: linear-gradient(180deg, #eaf1ff, #b9c9f0);
+    border-bottom-right-radius: 4px;
+}
+.nc-msg.bot a { color: #a9c4ff; text-decoration: underline; }
+.nc-typing { display: inline-flex; gap: 4px; padding: 2px 0; }
+.nc-typing i { width: 6px; height: 6px; border-radius: 50%; background: var(--text-dim);
+    animation: ncTyping 1s infinite ease-in-out; }
+.nc-typing i:nth-child(2) { animation-delay: .15s; }
+.nc-typing i:nth-child(3) { animation-delay: .3s; }
+@keyframes ncTyping { 0%, 60%, 100% { opacity: .3; transform: translateY(0); } 30% { opacity: 1; transform: translateY(-3px); } }
+
+.nc-suggest { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 14px 8px; }
+.nc-chip {
+    font-family: var(--mono); font-size: .68rem; cursor: pointer;
+    padding: 5px 10px; border-radius: 999px; color: var(--text-dim);
+    background: var(--chip-bg); border: 1px solid var(--border);
+    transition: all .18s ease;
+}
+.nc-chip:hover { color: var(--accent); border-color: var(--accent-2); transform: translateY(-1px); }
+
+.nc-input { display: flex; gap: 8px; padding: 10px 12px 6px; border-top: 1px solid var(--border); }
+.nc-input input {
+    flex: 1; min-width: 0; padding: 10px 13px; border-radius: 999px;
+    background: rgba(255,255,255,.05); border: 1px solid var(--border);
+    color: var(--text); font-family: var(--font); font-size: .84rem; outline: none;
+    transition: border-color .2s ease;
+}
+.nc-input input::placeholder { color: var(--text-faint); }
+.nc-input input:focus { border-color: var(--accent-2); }
+.nc-input button {
+    flex: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer;
+    border: 1px solid rgba(255,255,255,.7); color: #0a0c14;
+    background: linear-gradient(180deg, #ffffff, #dfe5f0);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.9); font-size: .82rem;
+    transition: transform .18s ease;
+}
+.nc-input button:hover { transform: translateY(-1px) scale(1.05); }
+.nc-foot { padding: 0 14px 10px; margin: 0; font-size: .64rem; color: var(--text-faint); text-align: center; }
+
+@media (max-width: 520px) {
+    .neuron-chat { bottom: 14px; right: 14px; left: 14px; width: auto; height: 68vh; }
+    .neuron-greet { display: none; }
 }
