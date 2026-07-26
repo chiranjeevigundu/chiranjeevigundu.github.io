@@ -4,24 +4,24 @@
    ========================================================= */
 
 :root {
-    --bg: #0d0b07;
-    --bg-elev: rgba(32, 26, 14, 0.6);
-    --bg-alt: rgba(255, 240, 210, 0.02);
-    --text: #f0e6d2;
-    --text-dim: #b8a88a;
-    --text-faint: #8a7d63;
-    --accent: #ffb000;
-    --accent-2: #ff7a1a;
-    --accent-3: #e63946;
-    --border: rgba(255, 220, 160, 0.10);
-    --border-strong: rgba(255, 220, 160, 0.20);
-    --chip-bg: rgba(255, 220, 160, 0.05);
-    --grid-line: rgba(255, 220, 160, 0.035);
-    --shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
-    --blob-opacity: 0.30;
-    --radius: 14px;
+    --bg: #0b0c0f;
+    --bg-elev: rgba(255, 255, 255, 0.035);
+    --bg-alt: rgba(255, 255, 255, 0.02);
+    --text: #f2f3f5;
+    --text-dim: #a3a8b2;
+    --text-faint: #6b7078;
+    --accent: #ffffff;
+    --accent-2: #8ab4f8;
+    --accent-3: #f28b82;
+    --border: rgba(255, 255, 255, 0.10);
+    --border-strong: rgba(255, 255, 255, 0.18);
+    --chip-bg: rgba(255, 255, 255, 0.04);
+    --grid-line: rgba(255, 255, 255, 0.025);
+    --shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+    --blob-opacity: 0.10;
+    --radius: 16px;
     --maxw: 1080px;
-    --font: 'Inter', system-ui, -apple-system, sans-serif;
+    --font: 'Manrope', 'Inter', system-ui, -apple-system, sans-serif;
     --mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
 }
 
@@ -58,6 +58,13 @@ a { color: inherit; text-decoration: none; }
     z-index: -2; pointer-events: none;
     mask-image: radial-gradient(ellipse at 50% 0%, #000 30%, transparent 78%);
     -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 30%, transparent 78%);
+}
+
+.particle-field {
+    position: fixed; inset: 0;
+    width: 100%; height: 100%;
+    z-index: -1; pointer-events: none;
+    opacity: .9;
 }
 
 .blob-cont { position: fixed; inset: 0; z-index: -3; overflow: hidden; pointer-events: none; }
@@ -181,18 +188,16 @@ nav.scrolled {
 .eyebrow i { color: var(--accent); margin-right: 5px; }
 
 h1.glitch {
-    font-size: clamp(2.6rem, 7vw, 4.4rem);
-    font-weight: 800; letter-spacing: -.035em; line-height: 1.02;
-    position: relative; margin-bottom: 10px;
-    background: linear-gradient(120deg, var(--text) 20%, var(--accent) 60%, var(--accent-2) 95%);
-    -webkit-background-clip: text; background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-size: clamp(2.8rem, 7.6vw, 4.9rem);
+    font-weight: 800; letter-spacing: -.045em; line-height: 1.0;
+    position: relative; margin-bottom: 14px;
+    color: var(--text);
 }
 
 .subtitle {
     font-size: clamp(1.05rem, 2.4vw, 1.4rem);
-    font-weight: 500; color: var(--accent);
-    font-family: var(--mono); letter-spacing: -.01em;
+    font-weight: 500; color: var(--text-dim);
+    letter-spacing: -.01em;
     margin-bottom: 22px;
 }
 
@@ -223,21 +228,21 @@ h1.glitch {
 
 .btn-primary, .btn-secondary {
     display: inline-flex; align-items: center; gap: 8px;
-    padding: 11px 22px; border-radius: 9px;
-    font-size: .88rem; font-weight: 600;
+    padding: 12px 24px; border-radius: 9999px;
+    font-size: .9rem; font-weight: 600;
     transition: all .22s ease; cursor: pointer;
 }
 .btn-primary {
-    background: var(--accent); color: #0d0b07;
-    border: 1px solid var(--accent);
+    background: var(--text); color: var(--bg);
+    border: 1px solid var(--text);
 }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 26px -8px var(--accent); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 30px -10px rgba(255, 255, 255, .35); }
 
 .btn-secondary {
-    background: transparent; color: var(--text-dim);
+    background: rgba(255, 255, 255, .03); color: var(--text);
     border: 1px solid var(--border-strong);
 }
-.btn-secondary:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
+.btn-secondary:hover { border-color: var(--text); background: rgba(255, 255, 255, .07); transform: translateY(-2px); }
 
 /* ---------- Sections ---------- */
 .section { padding: 96px 0; position: relative; }

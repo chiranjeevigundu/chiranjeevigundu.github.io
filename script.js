@@ -168,4 +168,115 @@
     /* ---------- Footer year ---------- */
     const yearEl = document.getElementById('year');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    /* ---------- Antigravity particle field ---------- */
+    (function particleField() {
+        const canvas = document.getElementById('particleField');
+        if (!canvas) return;
+        const reduce = window.matchMedia &&
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const ctx = canvas.getContext('2d');
+        let w = 0, h = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+        let particles = [];
+        const pointer = { x: -9999, y: -9999 };
+
+        // Mostly white dust with occasional subtle colour, echoing the source palette.
+        const TINTS = [
+            'rgba(255,255,255,',   // white
+            'rgba(255,255,255,',
+            'rgba(255,255,255,',
+            'rgba(138,180,248,',   // soft blue
+            'rgba(242,139,130,',   // soft red
+            'rgba(129,201,149,'    // soft green
+        ];
+
+        function rand(min, max) { return min + Math.random() * (max - min); }
+
+        function build() {
+            const target = Math.round((w * h) / 14000); // density scales with viewport
+            const count = Math.max(40, Math.min(180, target));
+            particles = [];
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: Math.random() * w,
+                    y: Math.random() * h,
+                    r: rand(0.5, 1.8),
+                    vy: -rand(0.05, 0.35),           // drift upward (anti-gravity)
+                    vx: rand(-0.12, 0.12),
+                    a: rand(0.15, 0.75),
+                    tw: rand(0.004, 0.02),           // twinkle speed
+                    ph: Math.random() * Math.PI * 2,
+                    tint: TINTS[(Math.random() * TINTS.length) | 0]
+                });
+            }
+        }
+
+        function resize() {
+            w = canvas.clientWidth = window.innerWidth;
+            h = canvas.clientHeight = window.innerHeight;
+            dpr = Math.min(window.devicePixelRatio || 1, 2);
+            canvas.width = Math.floor(w * dpr);
+            canvas.height = Math.floor(h * dpr);
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            build();
+        }
+
+        function frame() {
+            ctx.clearRect(0, 0, w, h);
+            for (let i = 0; i < particles.length; i++) {
+                const p = particles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+                p.ph += p.tw;
+
+                // gentle repulsion from the pointer for a subtle interactive feel
+                const dx = p.x - pointer.x, dy = p.y - pointer.y;
+                const d2 = dx * dx + dy * dy;
+                if (d2 < 14000) {
+                    const f = (14000 - d2) / 14000 * 0.6;
+                    const d = Math.sqrt(d2) || 1;
+                    p.x += (dx / d) * f;
+                    p.y += (dy / d) * f;
+                }
+
+                // wrap around edges
+                if (p.y < -5) { p.y = h + 5; p.x = Math.random() * w; }
+                if (p.x < -5) p.x = w + 5;
+                else if (p.x > w + 5) p.x = -5;
+
+                const alpha = p.a * (0.55 + 0.45 * Math.sin(p.ph));
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = p.tint + alpha.toFixed(3) + ')';
+                ctx.fill();
+            }
+            requestAnimationFrame(frame);
+        }
+
+        window.addEventListener('resize', resize, { passive: true });
+        window.addEventListener('pointermove', function (e) {
+            pointer.x = e.clientX; pointer.y = e.clientY;
+        }, { passive: true });
+        window.addEventListener('pointerleave', function () {
+            pointer.x = pointer.y = -9999;
+        }, { passive: true });
+
+        resize();
+        if (reduce) {
+            // Static field, no animation, for reduced-motion users.
+            frameOnce();
+        } else {
+            requestAnimationFrame(frame);
+        }
+
+        function frameOnce() {
+            ctx.clearRect(0, 0, w, h);
+            particles.forEach(function (p) {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = p.tint + p.a.toFixed(3) + ')';
+                ctx.fill();
+            });
+        }
+    })();
 })();
