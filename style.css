@@ -4,7 +4,7 @@
    ========================================================= */
 
 :root {
-    --bg: #05060d;
+    --bg: #030409;
     /* Glossy glass surface: light top sheen fading into a translucent dark base */
     --bg-elev: linear-gradient(155deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.015) 55%), rgba(18, 21, 34, 0.55);
     --bg-alt: rgba(255, 255, 255, 0.025);
@@ -20,7 +20,7 @@
     --chip-bg: linear-gradient(155deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.03));
     --grid-line: rgba(255, 255, 255, 0.022);
     --shadow: 0 24px 60px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.14);
-    --blob-opacity: 0.22;
+    --blob-opacity: 0.06;
     --radius: 16px;
     --maxw: 1080px;
     --font: 'Manrope', 'Inter', system-ui, -apple-system, sans-serif;
@@ -34,12 +34,10 @@ html { scroll-behavior: smooth; scroll-padding-top: 90px; }
 
 body {
     font-family: var(--font);
-    /* Deep-space nebula: layered colour clouds over a near-black base, fixed behind content */
+    /* Black deep space: near-black base with only a whisper of cool depth at the edges */
     background:
-        radial-gradient(900px 640px at 16% 12%, rgba(104, 82, 224, 0.26), transparent 62%),
-        radial-gradient(820px 560px at 86% 26%, rgba(40, 122, 224, 0.22), transparent 58%),
-        radial-gradient(760px 620px at 60% 82%, rgba(190, 72, 200, 0.20), transparent 60%),
-        radial-gradient(620px 520px at 34% 60%, rgba(38, 196, 224, 0.12), transparent 60%),
+        radial-gradient(1100px 800px at 50% -10%, rgba(30, 42, 78, 0.14), transparent 60%),
+        radial-gradient(900px 700px at 100% 100%, rgba(24, 30, 60, 0.12), transparent 60%),
         var(--bg);
     background-attachment: fixed;
     color: var(--text);
