@@ -220,7 +220,8 @@
                     baseA: 0.10 + z * 0.5,               // near particles are brighter
                     tw: rand(0.004, 0.016),              // twinkle speed
                     ph: Math.random() * Math.PI * 2,
-                    color: TINTS[(Math.random() * TINTS.length) | 0]
+                    color: TINTS[(Math.random() * TINTS.length) | 0],
+                    glow: z > 0.72                       // brightest stars get a soft halo
                 });
             }
         }
@@ -269,10 +270,13 @@
 
                 ctx.globalAlpha = p.baseA * (0.6 + 0.4 * Math.sin(p.ph));
                 ctx.fillStyle = p.color;
+                if (p.glow) { ctx.shadowColor = p.color; ctx.shadowBlur = p.r * 4; }
+                else { ctx.shadowBlur = 0; }
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
                 ctx.fill();
             }
+            ctx.shadowBlur = 0;
             ctx.globalAlpha = 1;
             requestAnimationFrame(frame);
         }

@@ -4,21 +4,23 @@
    ========================================================= */
 
 :root {
-    --bg: #0b0c0f;
-    --bg-elev: rgba(255, 255, 255, 0.035);
-    --bg-alt: rgba(255, 255, 255, 0.02);
-    --text: #f2f3f5;
-    --text-dim: #a3a8b2;
-    --text-faint: #6b7078;
+    --bg: #05060d;
+    /* Glossy glass surface: light top sheen fading into a translucent dark base */
+    --bg-elev: linear-gradient(155deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.015) 55%), rgba(18, 21, 34, 0.55);
+    --bg-alt: rgba(255, 255, 255, 0.025);
+    --text: #f8fafd;
+    --text-dim: #c6ccd8;
+    --text-faint: #8b93a5;
     --accent: #ffffff;
     --accent-2: #8ab4f8;
-    --accent-3: #f28b82;
-    --border: rgba(255, 255, 255, 0.10);
-    --border-strong: rgba(255, 255, 255, 0.18);
-    --chip-bg: rgba(255, 255, 255, 0.04);
-    --grid-line: rgba(255, 255, 255, 0.025);
-    --shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
-    --blob-opacity: 0.10;
+    --accent-3: #c79bff;
+    --border: rgba(255, 255, 255, 0.14);
+    --border-strong: rgba(255, 255, 255, 0.26);
+    /* Glossy chip: subtle sheen */
+    --chip-bg: linear-gradient(155deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.03));
+    --grid-line: rgba(255, 255, 255, 0.022);
+    --shadow: 0 24px 60px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+    --blob-opacity: 0.22;
     --radius: 16px;
     --maxw: 1080px;
     --font: 'Manrope', 'Inter', system-ui, -apple-system, sans-serif;
@@ -32,12 +34,18 @@ html { scroll-behavior: smooth; scroll-padding-top: 90px; }
 
 body {
     font-family: var(--font);
-    background-color: var(--bg);
+    /* Deep-space nebula: layered colour clouds over a near-black base, fixed behind content */
+    background:
+        radial-gradient(1200px 760px at 14% -6%, rgba(96, 74, 214, 0.20), transparent 60%),
+        radial-gradient(1050px 640px at 88% 6%, rgba(38, 112, 214, 0.17), transparent 55%),
+        radial-gradient(1000px 780px at 52% 112%, rgba(178, 66, 190, 0.15), transparent 58%),
+        var(--bg);
+    background-attachment: fixed;
     color: var(--text);
     line-height: 1.65;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    transition: background-color .35s ease, color .35s ease;
+    transition: color .35s ease;
 }
 
 ::selection { background: var(--accent); color: var(--bg); }
@@ -78,9 +86,9 @@ a { color: inherit; text-decoration: none; }
     opacity: var(--blob-opacity);
     transition: opacity .5s ease;
 }
-.blob-a { background: var(--accent);   top: -8%;  left: -6%;  animation: float 18s ease-in-out infinite; }
-.blob-b { background: var(--accent-2); top: 32%;  right: -10%; animation: float 22s ease-in-out infinite reverse; }
-.blob-c { background: var(--accent-3); bottom: -12%; left: 28%; animation: float 26s ease-in-out infinite; }
+.blob-a { background: #4a6cff;  top: -8%;  left: -6%;   animation: float 18s ease-in-out infinite; }
+.blob-b { background: #a24bff;  top: 32%;  right: -10%; animation: float 22s ease-in-out infinite reverse; }
+.blob-c { background: #2bd4ff;  bottom: -12%; left: 28%; animation: float 26s ease-in-out infinite; }
 
 @keyframes float {
     0%, 100% { transform: translate(0, 0) scale(1); }
@@ -157,7 +165,8 @@ nav.scrolled {
     width: 100%;
     max-width: 560px;
     box-sizing: border-box;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(16px) saturate(150%);
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
 }
 .terminal-header {
     display: flex; align-items: center; gap: 7px;
@@ -197,6 +206,7 @@ h1.glitch {
     font-weight: 800; letter-spacing: -.045em; line-height: 1.0;
     position: relative; margin-bottom: 14px;
     color: var(--text);
+    text-shadow: 0 2px 40px rgba(0, 0, 0, 0.55);
 }
 
 .subtitle {
@@ -220,13 +230,15 @@ h1.glitch {
     display: flex; flex-direction: column; gap: 2px;
     padding: 14px 16px; border-radius: 11px;
     background: var(--bg-elev); border: 1px solid var(--border);
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(12px) saturate(140%);
+    -webkit-backdrop-filter: blur(12px) saturate(140%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 8px 22px rgba(0, 0, 0, 0.35);
 }
 .metric-num {
     font-family: var(--mono); font-size: 1.5rem; font-weight: 600;
     color: var(--accent); line-height: 1.1;
 }
-.metric-label { font-size: .74rem; color: var(--text-faint); line-height: 1.35; }
+.metric-label { font-size: .78rem; color: var(--text-dim); line-height: 1.35; }
 
 /* buttons */
 .cta-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
@@ -238,14 +250,17 @@ h1.glitch {
     transition: all .22s ease; cursor: pointer;
 }
 .btn-primary {
-    background: var(--text); color: var(--bg);
-    border: 1px solid var(--text);
+    background: linear-gradient(180deg, #ffffff, #dfe5f0);
+    color: #0a0c14;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 6px 20px rgba(0, 0, 0, 0.45);
 }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 30px -10px rgba(255, 255, 255, .35); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 14px 34px -8px rgba(120, 160, 255, .5); }
 
 .btn-secondary {
-    background: rgba(255, 255, 255, .03); color: var(--text);
+    background: linear-gradient(160deg, rgba(255, 255, 255, .10), rgba(255, 255, 255, .03)); color: var(--text);
     border: 1px solid var(--border-strong);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.10);
 }
 .btn-secondary:hover { border-color: var(--text); background: rgba(255, 255, 255, .07); transform: translateY(-2px); }
 
@@ -257,6 +272,7 @@ h1.glitch {
     font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 700;
     letter-spacing: -.03em; margin-bottom: 8px;
     display: flex; align-items: baseline; gap: 14px;
+    text-shadow: 0 2px 30px rgba(0, 0, 0, 0.5);
 }
 .section-title::before {
     content: attr(data-num);
@@ -287,7 +303,9 @@ h1.glitch {
     border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 26px 28px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 10px 30px rgba(0, 0, 0, 0.4);
     transition: border-color .25s ease, transform .25s ease, box-shadow .25s ease;
 }
 .card:hover, .project-card:hover {
