@@ -175,38 +175,45 @@
         if (!canvas) return;
         const reduce = window.matchMedia &&
             window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const coarse = window.matchMedia &&
+            window.matchMedia('(pointer: coarse)').matches; // touch: skip pointer interaction
         const ctx = canvas.getContext('2d');
         let w = 0, h = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
         let particles = [];
-        const pointer = { x: -9999, y: -9999 };
+        let running = false, lastT = 0;
+        const pointer = { x: -9999, y: -9999, active: false };
+        const REPEL_R = 130, REPEL_R2 = REPEL_R * REPEL_R;
 
+        // Solid colours (opacity applied per-frame via globalAlpha — no per-frame string alloc).
         // Mostly white dust with occasional subtle colour, echoing the source palette.
         const TINTS = [
-            'rgba(255,255,255,',   // white
-            'rgba(255,255,255,',
-            'rgba(255,255,255,',
-            'rgba(138,180,248,',   // soft blue
-            'rgba(242,139,130,',   // soft red
-            'rgba(129,201,149,'    // soft green
+            'rgb(255,255,255)', 'rgb(255,255,255)', 'rgb(255,255,255)', 'rgb(255,255,255)',
+            'rgb(138,180,248)', // soft blue
+            'rgb(242,139,130)', // soft red
+            'rgb(129,201,149)'  // soft green
         ];
 
         function rand(min, max) { return min + Math.random() * (max - min); }
 
         function build() {
-            const target = Math.round((w * h) / 14000); // density scales with viewport
-            const count = Math.max(40, Math.min(180, target));
+            // Density scales with viewport but is capped tighter on small / touch screens.
+            const cap = (coarse || w < 640) ? 55 : 150;
+            const count = Math.max(28, Math.min(cap, Math.round((w * h) / 12000)));
             particles = [];
             for (let i = 0; i < count; i++) {
+                const z = Math.random();                 // depth 0 (far) → 1 (near)
                 particles.push({
                     x: Math.random() * w,
                     y: Math.random() * h,
-                    r: rand(0.5, 1.8),
-                    vy: -rand(0.05, 0.35),           // drift upward (anti-gravity)
-                    vx: rand(-0.12, 0.12),
-                    a: rand(0.15, 0.75),
-                    tw: rand(0.004, 0.02),           // twinkle speed
+                    z: z,
+                    r: 0.6 + z * 1.9,                    // near particles are larger
+                    vy: -(0.10 + z * 0.42),              // …and drift upward faster (parallax)
+                    sway: 0.15 + z * 0.5,                // horizontal weave amplitude
+                    swayF: rand(0.006, 0.018),           // weave frequency
+                    baseA: 0.10 + z * 0.5,               // near particles are brighter
+                    tw: rand(0.004, 0.016),              // twinkle speed
                     ph: Math.random() * Math.PI * 2,
-                    tint: TINTS[(Math.random() * TINTS.length) | 0]
+                    color: TINTS[(Math.random() * TINTS.length) | 0]
                 });
             }
         }
@@ -221,62 +228,90 @@
             build();
         }
 
-        function frame() {
+        function frame(now) {
+            if (!running) return;
+            // Frame-rate independent: dt in 60fps-units, clamped so a background tab
+            // returning doesn't teleport particles.
+            let dt = lastT ? (now - lastT) / 16.667 : 1;
+            lastT = now;
+            if (dt > 3) dt = 3;
+
             ctx.clearRect(0, 0, w, h);
             for (let i = 0; i < particles.length; i++) {
                 const p = particles[i];
-                p.x += p.vx;
-                p.y += p.vy;
-                p.ph += p.tw;
+                p.ph += p.tw * dt;
+                p.y += p.vy * dt;
+                p.x += Math.sin(p.ph) * p.sway * dt;     // organic side-to-side weave
 
-                // gentle repulsion from the pointer for a subtle interactive feel
-                const dx = p.x - pointer.x, dy = p.y - pointer.y;
-                const d2 = dx * dx + dy * dy;
-                if (d2 < 14000) {
-                    const f = (14000 - d2) / 14000 * 0.6;
-                    const d = Math.sqrt(d2) || 1;
-                    p.x += (dx / d) * f;
-                    p.y += (dy / d) * f;
+                // gentle pointer repulsion (skipped on touch devices)
+                if (pointer.active) {
+                    const dx = p.x - pointer.x, dy = p.y - pointer.y;
+                    const d2 = dx * dx + dy * dy;
+                    if (d2 < REPEL_R2 && d2 > 0.01) {
+                        const d = Math.sqrt(d2);
+                        const f = (1 - d / REPEL_R) * 1.6 * dt * (0.5 + p.z);
+                        p.x += (dx / d) * f;
+                        p.y += (dy / d) * f;
+                    }
                 }
 
                 // wrap around edges
-                if (p.y < -5) { p.y = h + 5; p.x = Math.random() * w; }
-                if (p.x < -5) p.x = w + 5;
-                else if (p.x > w + 5) p.x = -5;
+                if (p.y < -6) { p.y = h + 6; p.x = Math.random() * w; }
+                if (p.x < -6) p.x = w + 6;
+                else if (p.x > w + 6) p.x = -6;
 
-                const alpha = p.a * (0.55 + 0.45 * Math.sin(p.ph));
+                ctx.globalAlpha = p.baseA * (0.6 + 0.4 * Math.sin(p.ph));
+                ctx.fillStyle = p.color;
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                ctx.fillStyle = p.tint + alpha.toFixed(3) + ')';
                 ctx.fill();
             }
+            ctx.globalAlpha = 1;
             requestAnimationFrame(frame);
         }
 
-        window.addEventListener('resize', resize, { passive: true });
-        window.addEventListener('pointermove', function (e) {
-            pointer.x = e.clientX; pointer.y = e.clientY;
-        }, { passive: true });
-        window.addEventListener('pointerleave', function () {
-            pointer.x = pointer.y = -9999;
-        }, { passive: true });
-
-        resize();
-        if (reduce) {
-            // Static field, no animation, for reduced-motion users.
-            frameOnce();
-        } else {
+        function start() {
+            if (running || reduce) return;
+            running = true; lastT = 0;
             requestAnimationFrame(frame);
         }
+        function stop() { running = false; }
 
-        function frameOnce() {
+        function drawStatic() {
             ctx.clearRect(0, 0, w, h);
-            particles.forEach(function (p) {
+            for (let i = 0; i < particles.length; i++) {
+                const p = particles[i];
+                ctx.globalAlpha = p.baseA;
+                ctx.fillStyle = p.color;
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                ctx.fillStyle = p.tint + p.a.toFixed(3) + ')';
                 ctx.fill();
-            });
+            }
+            ctx.globalAlpha = 1;
         }
+
+        window.addEventListener('resize', function () {
+            resize();
+            if (reduce) drawStatic();
+        }, { passive: true });
+
+        if (!coarse) {
+            window.addEventListener('pointermove', function (e) {
+                pointer.x = e.clientX; pointer.y = e.clientY; pointer.active = true;
+            }, { passive: true });
+            window.addEventListener('pointerleave', function () {
+                pointer.active = false;
+            }, { passive: true });
+        }
+
+        // Pause the loop when the tab is hidden to save CPU/battery.
+        document.addEventListener('visibilitychange', function () {
+            if (document.hidden) stop();
+            else start();
+        });
+
+        resize();
+        if (reduce) drawStatic();
+        else start();
     })();
 })();
