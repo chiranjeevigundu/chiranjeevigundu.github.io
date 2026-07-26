@@ -85,11 +85,15 @@
           r: "I can tell you about Chiranjeevi's <b>experience</b>, the <b>Aadyon Assist</b> project, his <b>tech stack</b>, how he builds <b>RAG</b> and <b>agent</b> systems, his <b>education</b>, and how to <b>hire</b> him. What are you curious about?" }
     ];
 
-    // Precompile matchers: multi-word keyword → substring; single word → word-start.
+    // Precompile matchers: multi-word keyword → substring; single word → word match.
+    // Short keywords (<=3 chars, e.g. "yo", "hi", "ms") must match a WHOLE word so
+    // "yo" doesn't fire on "you"; longer ones allow a prefix so "project" also hits
+    // "projects".
     KB.forEach(function (item) {
         item.m = item.k.map(function (kw) {
             if (kw.indexOf(' ') >= 0) return { multi: true, s: kw };
-            return { multi: false, re: new RegExp('\\b' + kw) };
+            const re = kw.length <= 3 ? '\\b' + kw + '\\b' : '\\b' + kw;
+            return { multi: false, re: new RegExp(re) };
         });
     });
 
