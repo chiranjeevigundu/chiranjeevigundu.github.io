@@ -4,6 +4,13 @@
 (function () {
     'use strict';
 
+    // Idempotency guard: if this script is evaluated more than once in the same
+    // page (hot-reload / live-preview / bfcache re-entry), bail out so we never
+    // start a second typewriter or particle loop — that caused the text to jump
+    // around erratically as two loops fought over the same element.
+    if (window.__cgPortfolioInit) return;
+    window.__cgPortfolioInit = true;
+
     /* ---------- Mobile menu ---------- */
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.getElementById('navLinks');
