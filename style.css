@@ -36,9 +36,10 @@ body {
     font-family: var(--font);
     /* Deep-space nebula: layered colour clouds over a near-black base, fixed behind content */
     background:
-        radial-gradient(1200px 760px at 14% -6%, rgba(96, 74, 214, 0.20), transparent 60%),
-        radial-gradient(1050px 640px at 88% 6%, rgba(38, 112, 214, 0.17), transparent 55%),
-        radial-gradient(1000px 780px at 52% 112%, rgba(178, 66, 190, 0.15), transparent 58%),
+        radial-gradient(900px 640px at 16% 12%, rgba(104, 82, 224, 0.26), transparent 62%),
+        radial-gradient(820px 560px at 86% 26%, rgba(40, 122, 224, 0.22), transparent 58%),
+        radial-gradient(760px 620px at 60% 82%, rgba(190, 72, 200, 0.20), transparent 60%),
+        radial-gradient(620px 520px at 34% 60%, rgba(38, 196, 224, 0.12), transparent 60%),
         var(--bg);
     background-attachment: fixed;
     color: var(--text);
